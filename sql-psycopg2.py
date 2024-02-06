@@ -26,7 +26,7 @@ cursor = connection.cursor()
 # cursor.execute('SELECT * FROM "track" WHERE "composer" = %s', ["Queen"])
 
 # cursor.execute('SELECT * FROM "artist" WHERE "name" = %s', ["Black Sabbath"])
-cursor.execute('SELECT * FROM "track" WHERE "composer" = %s', ["Black Sabbath"])
+# cursor.execute('SELECT * FROM "track" WHERE "composer" = %s', ["Black Sabbath"])
 
 
 # fetch the results (multiple)
