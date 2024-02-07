@@ -7,11 +7,11 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 # executing the instructions from the "chinook" database
 db = create_engine("postgresql:///chinook")
-base = declarative_base()
+Base = declarative_base()
 
 # create a class-based model for the "Programmer" table
-class programmer(base):
-    __tablename__ = "programmer"
+class Programmer(Base):
+    __tablename__ = "Programmer"
     id = Column(Integer, primary_key=True)
     first_name = Column(String)
     last_name = Column(String)
@@ -26,10 +26,10 @@ Session = sessionmaker(db)
 session = Session()
 
 # creating the database using declarative_base subclass
-base.metadata.create_all(db)
+Base.metadata.create_all(db)
 
 # creating records on our Progammer table
-ada_lovelace = programmer(
+ada_lovelace = Programmer(
     first_name="Ada",
     last_name="Lovelace",
     gender="F",
@@ -37,7 +37,7 @@ ada_lovelace = programmer(
     famous_for="First Programmer"
 )
 
-alan_turing = programmer(
+alan_turing = Programmer(
     first_name="Alan",
     last_name="Turing",
     gender="M",
@@ -45,7 +45,7 @@ alan_turing = programmer(
     famous_for="Modern Computing"
 )
 
-grace_hopper = programmer(
+grace_hopper = Programmer(
     first_name="Grace",
     last_name="Hopper",
     gender="F",
@@ -53,7 +53,7 @@ grace_hopper = programmer(
     famous_for="COBOL language"
 )
 
-margaret_hamilton = programmer(
+margaret_hamilton = Programmer(
     first_name="Margaret",
     last_name="Hamilton",
     gender="F",
@@ -61,7 +61,7 @@ margaret_hamilton = programmer(
     famous_for="Apollo 11"
 )
 
-bill_gates = programmer(
+bill_gates = Programmer(
     first_name="Bill",
     last_name="Gates",
     gender="M",
@@ -69,7 +69,7 @@ bill_gates = programmer(
     famous_for="Microsoft"
 )
 
-tim_berners_lee = programmer(
+tim_berners_lee = Programmer(
     first_name="Tim",
     last_name="Berners-Lee",
     gender="M",
@@ -80,17 +80,17 @@ tim_berners_lee = programmer(
 
 # add each instance of our programmers to our session
 session.add(ada_lovelace)
-# session.add(alan_turing)
-# session.add(grace_hopper)
-# session.add(margaret_hamilton)
-# session.add(bill_gates)
-# session.add(tim_berners_lee)
+session.add(alan_turing)
+session.add(grace_hopper)
+session.add(margaret_hamilton)
+session.add(bill_gates)
+session.add(tim_berners_lee)
 
 # commit our session to the database
 session.commit()
 
 # query the database to find all Programmers
-programmers = session.query(programmer)
+programmers = session.query(Programmer)
 for programmer in programmers:
     print(
         programmer.id,
